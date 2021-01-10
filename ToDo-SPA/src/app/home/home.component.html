@@ -1,0 +1,12 @@
+<div class="container jumbotron" style="margin-top: 10%;">
+  <div class="row col-sm">
+    <div class="card" style="width: 18rem; margin: 2%;" *ngFor="let blog of blogs">
+      <img src={{blog.photoUrl}} class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{blog.title}}</h5>
+        <p class="card-text">{{blog.description}}</p>
+        <a href="#" class="btn btn-primary" style="position: relative;">More</a>
+      </div>
+    </div>
+  </div>
+</div>

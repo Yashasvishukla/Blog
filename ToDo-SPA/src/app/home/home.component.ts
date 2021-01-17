@@ -7,20 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  blogs: any;
-  constructor(private http: HttpClient) { }
+  registerMode = false;
+  constructor() { }
 
   ngOnInit() {
-    this.loadBlogs();
   }
 
-  loadBlogs(){
-    this.http.get('http://localhost:5000/api/blog').subscribe(
-      data => {
-        this.blogs = data;
-      }, err => {
-        console.log(err);
-      }
-    );
+  registerToggle(){
+    this.registerMode = true;
   }
+
+  cancelRegister(registerMode: boolean){
+    this.registerMode = registerMode;
+  }
+
 }

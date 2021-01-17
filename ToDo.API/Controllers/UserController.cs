@@ -64,7 +64,7 @@ namespace ToDo.API.Controllers
         public async Task<IActionResult> Regsiter(UserForRegisterDto userForRegisterDto){
 
             if(await _repo.UserExists(userForRegisterDto.Username.ToLower()))
-                return BadRequest();
+                return BadRequest("Incorrect Username and Password");
 
             var userToCreate = new User{
                 Username = userForRegisterDto.Username.ToLower()
@@ -72,7 +72,7 @@ namespace ToDo.API.Controllers
 
             var userCreated = await _repo.Register(userToCreate,userForRegisterDto.Password);
 
-            return StatusCode(201,"User Registered Successfully");
+            return StatusCode(201);
 
             // return CreatedAtRoute('login',user);
         }

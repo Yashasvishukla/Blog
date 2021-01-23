@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Blog App</a>
+    <a class="navbar-brand" [routerLink]="['/']">Blog App</a>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/']"  >Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Posts</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/posts']">Posts</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">New Post</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/new-post']" >New Post</a>
         </li>
 
       </ul>

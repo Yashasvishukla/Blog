@@ -15,15 +15,19 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { RouterModule } from '@angular/router';
 import { appRouter } from './router';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { BlogDetailResolver } from './_resolvers/blog-detail.resolver';
+import { BlogListResolver } from './_resolvers/blog-list.resolver';
 
 @NgModule({
-  declarations: [					
+  declarations: [						
     AppComponent,
       NavComponent,
       HomeComponent,
       RegisterComponent,
       PostsComponent,
-      NewPostComponent
+      NewPostComponent,
+      BlogDetailComponent
    ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   ],
   providers: [
     AuthService,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    BlogListResolver,
+    BlogDetailResolver
   ],
   bootstrap: [AppComponent]
 })

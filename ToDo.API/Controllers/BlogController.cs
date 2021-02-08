@@ -1,7 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDo.API.Data;
+using ToDo.API.Dtos;
+using ToDo.API.Models;
 
 namespace ToDo.API.Controllers
 {
@@ -9,38 +12,31 @@ namespace ToDo.API.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        private readonly DataContext _dbContext;
-        public BlogController(DataContext dbContext)
+        private readonly IBlogRepository _repo;
+        public BlogController(IBlogRepository repo)
         {
-            _dbContext = dbContext;
-
+            _repo = repo;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetBlogs(){
-            var blogs = await _dbContext.Blogs.ToListAsync();
+            var blogs = await _repo.GetBlogs();
             return Ok(blogs);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBlog(int id){
-            var blog = await _dbContext.Blogs.FirstOrDefaultAsync(x=> x.Id == id);
-            if(blog == null){
-                return NoContent();
-            }
-
+            var blog = await _repo.GetBlog(id);
             return Ok(blog);
         }
 
+        [HttpPost]
 
-        // How do we separate these two request Look for that part
-        // [HttpGet]
-        // public async Task<IActionResult> GetBlogByAuthorName(string Author){
-        //     var blog = await _dbContext.Blogs.FirstOrDefaultAsync(x=>x.Author.Equals(Author));
-        //     if(blog == null) return NoContent();
-        //     return Ok(blog); 
-        // }
+        public void AddBlog([FromBody] Blog blog){
+            _repo.Add(blog);
+            _repo.SaveAll();
+        }
 
     }
 }
